@@ -19,22 +19,39 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="#">Student Manager</a>
+    <nav class="navbar navbar-expand-lg navbar-dark"
+     style="background-color: #1e40af;">
+  <div class="container">
 
-        <div class="collapse navbar-collapse show">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'student_list' %}">Student List</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'student_add' %}">Add Student</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <a class="navbar-brand fw-bold"
+       href="#"
+       style="font-size: 1.6rem; letter-spacing: 1px; color: #ffffff;">
+      Student Manager
+    </a>
+
+    <div class="collapse navbar-collapse show">
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+          <a class="nav-link"
+             style="font-size: 1.05rem; color: #e5e7eb;"
+             href="{% url 'student_list' %}">
+            Student List
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             style="font-size: 1.05rem; color: #e5e7eb;"
+             href="{% url 'student_add' %}">
+            Add Student
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
