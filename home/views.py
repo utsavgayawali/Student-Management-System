@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Student
 
 # Create your views here.
@@ -16,8 +16,9 @@ def student_Add(request):
 
         student = Student(name= name,age=age,email=email,address=address)
         student.save()
-
-    return render(request,'student_add.html')
+        return redirect('student_list')
+    else:
+        return render(request,'student_add.html')
 
 def student_delete(request):
     return render(request,'student_delete.html')
