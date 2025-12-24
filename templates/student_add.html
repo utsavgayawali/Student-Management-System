@@ -1,17 +1,22 @@
-{% extends "base.html" %} 
-{% load static %} 
-{% block body %}
+{% extends "base.html" %} {% load static %} {% block body %}
 
 <div class="container mt-5">
   <div class="card shadow-sm border-0">
     <!-- Card Header (lighter than navbar) -->
-    <div class="card-header" style="background-color: #3b82f6; color: white">
-      <h4 class="mb-0 fw-semibold">Student Details</h4>
+    {% if student %}
+     <div class="card-header" style="background-color: #3b82f6; color: white">
+      <h4 class="mb-0 fw-semibold"> Edit Student Details</h4>
     </div>
+    {% else %}
+    <div class="card-header" style="background-color: #3b82f6; color: white">
+      <h4 class="mb-0 fw-semibold">Add Student Details</h4>
+    </div>
+    {% endif %}
 
     <div class="card-body">
-      <form method ="POST">
+      <form method="POST">
         {% csrf_token %}
+        {% if student %}
         <div class="mb-3">
           <label class="form-label" style="color: #1f2937; font-weight: 600">
             Full Name
@@ -20,7 +25,8 @@
             type="text"
             class="form-control"
             placeholder="Enter student name"
-            name='name'
+            name="name"
+            value="{{student.name}}"
           />
         </div>
 
@@ -28,31 +34,105 @@
           <label class="form-label" style="color: #1f2937; font-weight: 600">
             Email Address
           </label>
-          <input type="email" class="form-control" placeholder="Enter email" name='email' />
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Enter email"
+            name="email"
+            value="{{student.email}}"
+          />
         </div>
 
         <div class="mb-3">
           <label class="form-label" style="color: #1f2937; font-weight: 600">
             Age
           </label>
-          <input type="number" class="form-control" placeholder="Enter age" name='age' />
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Enter age"
+            name="age"
+            value="{{student.age}}"
+          />
         </div>
 
         <div class="mb-4">
           <label class="form-label" style="color: #1f2937; font-weight: 600">
             Address
           </label>
-          <textarea
+          <input
             class="form-control"
             rows="3"
             placeholder="Enter address"
-            name='address'
-          ></textarea>
+            name="address"
+            value="{{student.address}}"
+          />
         </div>
 
         <!-- Buttons -->
         <div class="d-flex justify-content-end gap-2">
-          <a href="#" class="btn btn-outline-secondary"> Cancel </a>
+          <a href="{% url 'student_List' %}" class="btn btn-outline-secondary"> Cancel </a>
+
+          <button
+            type="submit"
+            class="btn mx-3"
+            style="background-color: #1e40af; color: white"
+          >
+            Edit Student
+          </button>
+        </div>
+        {% else %}
+        <div class="mb-3">
+          <label class="form-label" style="color: #1f2937; font-weight: 600">
+            Full Name
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter student name"
+            name="name"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" style="color: #1f2937; font-weight: 600">
+            Email Address
+          </label>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Enter email"
+            name="email"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" style="color: #1f2937; font-weight: 600">
+            Age
+          </label>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Enter age"
+            name="age"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label" style="color: #1f2937; font-weight: 600">
+            Address
+          </label>
+          <input
+            class="form-control"
+            rows="3"
+            placeholder="Enter address"
+            name="address"
+          />
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-end gap-2">
+          <a href="{% url 'student_List' %}" class="btn btn-outline-secondary"> Cancel </a>
 
           <button
             type="submit"
@@ -62,6 +142,8 @@
             Save Student
           </button>
         </div>
+
+        {% endif %}
       </form>
     </div>
   </div>
